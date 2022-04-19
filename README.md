@@ -1,11 +1,4 @@
 # Come on, Board
-✔ 사용 기술  
- - Back-end : Spring framework, java, MyBatis, AWS(EC2, rds), MySQL, Tomcat
- - Front-end : html5, css3, Javascript, Jquery, Ajax, json, Bootstrap
- - API : 카카오 로그인, 카카오 링크, 네이버 블로그, 네이버 블로그 공유, 카카오 맵, 카카오페이, Summernote
- - Tool : github, sts
----
-
 ✔ 프로젝트 소개
 
 ### Come On, Board
@@ -22,6 +15,11 @@
 ✔ 기술 스택
 
 ![image](https://user-images.githubusercontent.com/84554105/163958425-f1c28d61-d781-43a5-9860-8f6848eeac03.png)
+
+ - Back-end : Spring framework, java, MyBatis, AWS(EC2, rds), MySQL, Tomcat
+ - Front-end : html5, css3, Javascript, Jquery, Ajax, json, Bootstrap
+ - API : 카카오 로그인, 카카오 링크, 네이버 블로그, 네이버 블로그 공유, 카카오 맵, 카카오페이, Summernote
+ - Tool : github, sts
 
 ---
 
