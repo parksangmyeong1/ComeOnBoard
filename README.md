@@ -6,7 +6,7 @@
  - Tool : github, sts
 ---
 
-✔## 프로젝트 소개
+✔ 프로젝트 소개
 
 ### Come On, Board
 
@@ -18,7 +18,7 @@ Come On, Board는 보드게임을 하기 위한 모임을 찾는 웹서비스입
 
 ---
 
-## 프로젝트 설명
+✔ 프로젝트 설명
 1. 프로젝트 소개
 2. ERD
 3. Flow chart
@@ -31,7 +31,7 @@ Come On, Board는 보드게임을 하기 위한 모임을 찾는 웹서비스입
 
 ---
 
-## 패키지 분류
+✔ 패키지 분류
 * 회원 & 친구 : 성종원
   - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/member)
   - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/member)
@@ -50,7 +50,7 @@ Come On, Board는 보드게임을 하기 위한 모임을 찾는 웹서비스입
 
 ---
 
-## 프로젝트 참가자
+✔ 프로젝트 참가자
 
 * [성종원](https://github.com/jongchi)
 * [이현우](https://github.com/rainty02)
