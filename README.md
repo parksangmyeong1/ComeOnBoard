@@ -13,6 +13,19 @@
 ![image](https://user-images.githubusercontent.com/84554105/163956876-89ece3f6-ae3d-4f23-a618-488aef4999f2.png)
 
 ---
+✔ ERD
+
+![image](https://user-images.githubusercontent.com/84554105/163957010-de28a6d0-8f62-4176-a9cb-fbf025baf28c.png)
+
+---
+
+✔ 기술 스택
+
+![image](https://user-images.githubusercontent.com/84554105/163958425-f1c28d61-d781-43a5-9860-8f6848eeac03.png)
+
+---
+
+
 
 ✔ 프로젝트 설명
 1. 프로젝트 소개
