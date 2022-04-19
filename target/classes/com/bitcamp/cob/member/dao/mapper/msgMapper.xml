@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.bitcamp.cob.msg.dao.MsgDao">
+	
+	<insert id="postMsg"
+			parameterType="com.bitcamp.cob.msg.domain.Msg"
+			useGeneratedKeys="true"
+	>
+	insert into msg (sendIdx, recIdx, msgContent) Values (#{sendIdx},#{recIdx},#{msgContent});
+	
+	</insert>
+
+</mapper>

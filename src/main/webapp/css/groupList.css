@@ -1,0 +1,309 @@
+@charset "UTF-8";
+
+/* 
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    #wrap {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: #eee;
+    }
+
+    header {
+        position: relative;
+        z-index: 20;
+        min-width: 980px;
+        width: 100%;
+        height: 140px;
+        background-color: rgb(66, 133, 244);
+        text-align: center;
+    }
+
+    .MultiBar {
+        display: inline-block;
+        height: 30px;
+        width: 100%;
+        max-width: 1280px;
+        padding: 12px 0px 5px;
+    }
+
+    .area_gnb {
+        font-size: 12px;
+        width: 500px;
+        height: 30px;
+        float: right;
+        color: white;
+    }
+
+    .area_gnb>li {
+        float: right;
+        width: 75px;
+    }
+
+    .container {
+        display: inline-block;
+        height: 93px;
+        width: 100%;
+        max-width: 1280px;
+        position: relative;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        width: 180px;
+        margin-left: -90px;
+    }
+
+
+    .main_naviwrap {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1280px;
+        height: 80px;
+        margin-top: -98px;
+        padding-bottom: 10px;
+    }
+
+    .main_nav {
+        padding-top: 45px;
+    }
+
+    .main_nav>.left_ul {
+        float: left;
+        overflow: hidden;
+    }
+
+    .main_nav>.right_ul {
+        float: right;
+        overflow: hidden;
+    }
+
+    .main_nav>ul>li {
+        color: white;
+        width: 85px;
+        float: left;
+    } */
+
+
+    .main_div {
+        border: 1px solid #aaa;
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    section {
+        max-width: 1000px;
+        float: left;
+        word-break: break-all;
+        /* text가 div 범위를 넘어가는 경우 word-break:break-all 을 해주면 자동으로 줄 바꿈을 해준다!! 꾸르팁 */
+    }
+
+    table {
+        background-color: white;
+        box-shadow: 0px 0px 5px 2px grey;
+    }
+
+    aside {
+        
+        border-radius: 5px;
+        float: right;
+        text-align: center;
+        color: black;
+        
+        
+        
+    }
+    #aside1 {
+        width: 200px;
+        height: 250px;
+        margin-top: 100px;
+        line-height: 250px;
+        font-size: 1.5em;
+        font-weight: bold;
+        box-shadow: 0px 0px 5px 2px grey;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    #aside2 {
+       width: 200px;
+        height: 250px;
+        margin-top: 50px;
+        line-height: 250px;
+        font-size: 1.5em;
+        font-weight: bold;
+        box-shadow: 0px 0px 5px 2px grey;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    #aside2_table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* table>th {}(x)  th{} (o) */
+    th {
+        padding: 10px;
+        font-size: 1.5em;
+    }
+
+    ul.tabs {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        
+    }
+
+    ul.tabs li {
+        display: inline-block;
+        background: rgb(52, 168, 83);
+        color: white;
+        padding: 10px 15px;
+        cursor: pointer;
+        box-shadow: 0px 0px 1px 1px grey;
+    }
+
+    ul.tabs li.current {
+        background: rgb(66, 133, 244);
+        color: white
+    }
+
+    .tab-content {
+        display: none;
+        
+        padding: 12px;
+    }
+
+    .tab-content.current {
+        display: inherit;
+        margin-top:86px;
+    }
+
+    .tab-p {
+        min-width: 900px;
+        
+    }
+
+    .thead1 {
+        height: 10px;
+    }
+
+    table {
+        border-collapse:collapse;
+        border-spacing:0;
+    }
+    
+    thead>tr>th {
+        background-color: rgb(52, 168, 83);
+        color: white;
+    }
+
+    th, td {
+        border: 1px solid rgb(52, 168, 83); 
+        padding: 10px;
+        border-collapse:collapse;
+        border-spacing: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    th {
+        font-size: 1em;
+    }
+
+    #group_link {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    #paging {
+        text-align: center;
+        padding-top: 10px;
+        font-size: 1.1em;
+        overflow: hidden;
+    }
+
+    #category {
+        text-align: center;
+    }
+
+    #nickname {
+        text-align: center;
+    }
+  
+    #startDate {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    #endDate {
+        text-align: center;
+    }
+
+    #regDate {
+        text-align: center;
+    }
+
+    #search_var {
+        text-align: center;
+        padding-top: 10px;
+        margin-top:10px;
+        margin-bottom: 50px;
+    }
+
+    #form_select_category {
+        padding: 5px;
+    }
+
+    #form_search {
+        padding: 5px;
+        width: 300px;
+    }
+
+    #form_button {
+        width: 60px;
+        height: 30px;
+        background-color:rgb(52, 168, 83);
+        color: white;
+        border: none;
+        box-shadow: 0px 0px 1px 1px grey;
+    }
+
+    .no_overflow {
+        width: 200px;
+        height: 230px;
+        line-height: 100%;
+        background-color: white;
+    }
+
+    .button200px {
+        border: hidden;
+        cursor: pointer;
+    }
+    
+    
+    .wrap_list {
+    	margin-left:50%;
+    }
+ 
+    .wrap_list>.list_count {
+   		display:inline; 
+    	float:left;
+    	padding-top:10px;
+    	font-size:1.1em;
+    }
+    
+    
+    
+    

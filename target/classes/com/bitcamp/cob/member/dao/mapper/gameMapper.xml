@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitcamp.cob.game.dao.GameDao">
+
+
+	<!-- Select 의 결과를 매핑하는 설정 -->
+	<!-- 게임명 장르 게임인원 플레이타임 사용연령 게임이미지 -->
+	<resultMap id="gameListResult"
+		type="com.bitcamp.cob.game.domain.Game">
+		<id column="gameIdx" property="gameIdx" />
+		<result column="gameIdx" property="gameIdx" />
+		<result column="gameName" property="gameName" />
+		<result column="gameSort" property="gameSort" />
+		<result column="gamePerson" property="gamePerson" />
+		<result column="gameTime" property="gameTime" />
+		<result column="gameLmtAge" property="gameLmtAge" />
+		<result column="gamePhoto" property="gamePhoto" />
+	</resultMap>
+
+	<resultMap id="gameReivewResult"
+		type="com.bitcamp.cob.game.domain.GameReview">
+		<id column="revIdx" property="revIdx" />
+		<result column="gameIdx" property="gameIdx" />
+		<result column="memIdx" property="memIdx" />
+		<result column="revContent" property="revContent" />
+		<result column="revRegDate" property="revRegDate" />
+		<result column="revRating" property="revRating" />
+	</resultMap>
+
+	<!-- 게임 리스트 -->
+	<resultMap id="gameMainResult"
+		type="com.bitcamp.cob.game.domain.GameMain">
+		<id column="gameIdx" property="gameIdx" />
+		<result column="gameName" property="gameName" />
+		<result column="gameSort" property="gameSort" />
+		<result column="gamePerson" property="gamePerson" />
+		<result column="gameTime" property="gameTime" />
+		<result column="gameLmtAge" property="gameLmtAge" />
+		<result column="gamePublisher" property="gamePublisher" />
+		<result column="gamePubDate" property="gamePubDate" />
+		<result column="gamePhoto" property="gamePhoto" />
+		<result column="gameIntro" property="gameIntro" />
+		<result column="gameRule" property="gameRule" />
+		<result column="gameVideo" property="gameVideo" />
+		<result column="revRating" property="revRating" />
+	</resultMap>
+
+	<!-- 게임 리스트 -->
+	<resultMap id="gameMainPaging"
+		type="com.bitcamp.cob.game.domain.GameListView">
+		<id column="gameIdx" property="gameIdx" />
+		<result column="gameName" property="gameName" />
+		<result column="gameSort" property="gameSort" />
+		<result column="gamePerson" property="gamePerson" />
+		<result column="gameTime" property="gameTime" />
+		<result column="gameLmtAge" property="gameLmtAge" />
+		<result column="gamePublisher" property="gamePublisher" />
+		<result column="gamePubDate" property="gamePubDate" />
+		<result column="gamePhoto" property="gamePhoto" />
+		<result column="gameIntro" property="gameIntro" />
+		<result column="gameRule" property="gameRule" />
+		<result column="gameVideo" property="gameVideo" />
+		<result column="revRating" property="revRating" />
+	</resultMap>
+
+	<!-- 게임 페이지 -->
+	<resultMap id="gamePageResult"
+		type="com.bitcamp.cob.game.domain.GamePage">
+		<id column="gameIdx" property="gameIdx" />
+		<result column="gameName" property="gameName" />
+		<result column="gameSort" property="gameSort" />
+		<result column="gamePerson" property="gamePerson" />
+		<result column="gameTime" property="gameTime" />
+		<result column="gameLmtAge" property="gameLmtAge" />
+		<result column="gamePublisher" property="gamePublisher" />
+		<result column="gamePubDate" property="gamePubDate" />
+		<result column="gamePhoto" property="gamePhoto" />
+		<result column="gameIntro" property="gameIntro" />
+		<result column="gameRule" property="gameRule" />
+		<result column="gameVideo" property="gameVideo" />
+		<result column="gamePrice" property="gamePrice" />
+		<result column="avg" property="avg" />
+	</resultMap>
+	<!-- 게임 리뷰 페이지 -->
+	<resultMap id="gameRevResult"
+		type="com.bitcamp.cob.game.domain.GameReview">
+		<id column="revIdx" property="revIdx" />
+		<result column="gameIdx" property="gameIdx" />
+		<result column="memIdx" property="memIdx" />
+		<result column="revContent" property="revContent" />
+		<result column="revRegDate" property="revRegDate" />
+		<result column="revRating" property="revRating" />
+		<result column="nickname" property="nickname" />
+	</resultMap>
+	<!-- 오더 페이지 -->
+	<resultMap type="com.bitcamp.cob.game.domain.OrderList" 
+		id="orderListResult">
+		<id column="memIdx" property="memIdx"/>
+		<result column="gameName" property="gameName"/>
+		<result column="gamePrice" property="gamePrice"/>
+		<result column="shipAddress" property="shipAddress"/>
+		<result column="memName" property="memName"/>
+		<result column="gameIdx" property="gameIdx"/>			
+		<result column="orderDate" property="orderDate"/>	
+	</resultMap>
+	
+	
+	<!-- 총 게시글 수 -->
+	<select id="countGameList" resultType="Integer"
+		parameterType="com.bitcamp.cob.game.domain.SearchType">
+
+		SELECT count(*)
+		FROM gamelist
+		where
+	      		<![CDATA[gameidx>0]]>			
+		<if test="keyword != null and keyword != ''">
+			and gamename like concat('%',#{keyword},'%')
+		</if>
+		<if test="sortType == 1 ">
+		and gameSort = "전략"	
+		</if>
+		<if test="sortType == 2 ">
+		and gameSort = "추상"	
+		</if>	
+		<if test="sortType == 3 ">
+		and gameSort = "컬렉터블"	
+		</if>	
+		<if test="sortType == 4 ">
+		and gameSort = "가족"	
+		</if>
+		<if test="sortType == 5 ">
+		and gameSort = "어린이"	
+		</if>
+		<if test="sortType == 6 ">
+		and gameSort = "파티"	
+		</if>
+		<if test="sortType == 7 ">
+		and gameSort = "테마"	
+		</if>						
+		<if test="sortType == 8 ">
+		and gameSort = "워게임"	
+		</if>
+		
+	</select>
+
+	<!-- 게임 이름 중복 체크 -->
+	<select id = "selectName"
+			resultType = "int"
+	>	
+		select count(*) from gamelist where gameName=#{gameName}
+	</select>		
+	<!-- 게임 등록 -->
+	<insert id="insertGame"
+		parameterType="com.bitcamp.cob.game.domain.Game"
+		useGeneratedKeys="true" keyProperty="gameIdx">
+
+		insert into gamelist
+		<if test="gameName != null or gameName != '' ">
+			(gamename,gamesort,gamePerson,gameTime,gameLmtAge,gamePublisher,
+			gamePubDate,gamePhoto,gameIntro,gamerule,gameVideo)
+			value
+			(#{gameName},#{gameSort},#{gamePerson},#{gameTime},#{gameLmtAge},
+			#{gamePublisher},#{gamePubDate},#{gamePhoto},#{gameIntro},#{gameRule},#{gameVideo});
+		</if>
+
+		<if test="gameRule == null or gameRule == '' ">
+			(gamesort,gamePerson,gameTime,gameLmtAge,gamePublisher,
+			gamePubDate,gamePhoto,gameIntro,gameVideo)
+			value
+			(#{gameSort},#{gamePerson},#{gameTime},#{gameLmtAge},
+			#{gamePublisher},#{gamePubDate},#{gamePhoto},#{gameIntro},#{gameVideo});
+		</if>
+	</insert>
+
+	<!-- 게임 정보 수정 -->
+	<update id="editGame"
+		parameterType="com.bitcamp.cob.game.domain.Game">
+
+		update gamelist
+		<set>
+			<if test="gamePhoto == null">
+				gameName=#{gameName}, gameSort=#{gameSort},
+				gamePerson=#{gamePerson},
+				gameTime=#{gameTime},gameLmtAge=#{gameLmtAge},
+				gamePublisher=#{gamePublisher},
+				gamePubDate=#{gamePubDate},
+				gameIntro=#{gameIntro}, gameRule=#{gameRule}, gameVideo=#{gameVideo}
+			</if>
+			<if test="gamePhoto != null">
+				gameName=#{gameName}, gameSort=#{gameSort},
+				gamePerson=#{gamePerson},
+				gameTime=#{gameTime},gameLmtAge=#{gameLmtAge},
+				gamePublisher=#{gamePublisher},
+				gamePubDate=#{gamePubDate}, gamePhoto=#{gamePhoto},
+				gameIntro=#{gameIntro}, gameRule=#{gameRule}, gameVideo=#{gameVideo}
+			</if>
+			<if test="gameName == null and gameName == '' ">
+				gameSort=#{gameSort}, gamePerson=#{gamePerson},
+				gameTime=#{gameTime},gameLmtAge=#{gameLmtAge},
+				gamePublisher=#{gamePublisher},
+				gamePubDate=#{gamePubDate}, gamePhoto=#{gamePhoto},
+				gameIntro=#{gameIntro}, gameVideo=#{gameVideo}
+			</if>
+		</set>
+		where gameIdx=#{gameIdx};
+
+	</update>
+	<!-- 게임삭제 -->
+	<delete id="deleteGame"
+		parameterType="com.bitcamp.cob.game.domain.Game">
+		delete from gamelist where gameidx=#{gameIdx};
+	</delete>
+
+
+	<!-- 게임 리스트 -->
+<!-- 	<select id="selectGameMain" resultMap="gameMainResult"
+	parameterType="com.bitcamp.cob.game.domain.SearchType"
+	resultType="com.bitcamp.cob.game.domain.GameMain"
+	>
+
+		select gl.gameIdx, gl.gamename, gl.gamesort, gl.gamePerson, gl.gameTime,
+		gl.gameLmtAge, gl.gamePhoto, avg(gr.revRating) as avg
+		from gamelist gl left outer join gamereview gr
+		on gl.gameidx = gr.gameIdx
+		group by gl.gameidx
+		order by gameidx desc
+		limit #{firstRow},#{gameCountPerPage}
+	</select> -->
+	
+	<!--게임리스트,분류, 검색, 정렬 -->
+	<select id="searchGame"
+		parameterType="com.bitcamp.cob.game.domain.SearchType"
+		resultMap="gameMainResult"
+		resultType="com.bitcamp.cob.game.domain.GameMain">
+
+		select a.*
+		from (
+		select gl.gameIdx, gl.gamename, gl.gamesort,
+		gl.gamePerson, gl.gameTime,
+		gl.gameLmtAge, gl.gamePhoto,
+		avg(gr.revRating) as avg
+		from gamelist gl left outer join gamereview gr
+		on gl.gameidx = gr.gameIdx
+		group by gl.gameidx) a
+		<if test="keyword != null and keyword != ''">
+		where a.gamename like concat('%',#{keyword},'%')
+		</if>
+		<if test="sortType == 1 ">
+		where gameSort = "전략"	
+		</if>
+		<if test="sortType == 2 ">
+		where gameSort = "추상"	
+		</if>	
+		<if test="sortType == 3 ">
+		where gameSort = "컬렉터블"	
+		</if>	
+		<if test="sortType == 4 ">
+		where gameSort = "가족"	
+		</if>
+		<if test="sortType == 5 ">
+		where gameSort = "어린이"	
+		</if>
+		<if test="sortType == 6 ">
+		where gameSort = "파티"	
+		</if>
+		<if test="sortType == 7 ">
+		where gameSort = "테마"	
+		</if>						
+		<if test="sortType == 8 ">
+		where gameSort = "워게임"	
+		</if>
+		<!-- order by gameidx desc -->
+		<if test="orderType == 0">
+		order by gameidx desc
+		</if>
+		<if test="orderType == 1">
+		order by gameidx asc
+		</if>
+		<if test="orderType == 2">
+		order by avg desc
+		</if>				
+		limit #{firstRow},#{gameCountPerPage}
+		;
+
+	</select>	
+	
+	<!--페이징 -->
+	<select id="selectGamePaging" resultMap="gameMainResult">
+
+		select a.*
+		from (
+		select gl.gameIdx, gl.gamename, gl.gamesort,
+		gl.gamePerson, gl.gameTime,
+		gl.gameLmtAge, gl.gamePhoto,
+		avg(gr.revRating) as avg
+		from gamelist gl left outer join gamereview gr
+		on gl.gameidx = gr.gameIdx
+		group by gl.gameidx) a
+		<if test="keyword != null and keyword != ''">	
+		where a.gamename like concat('%',#{keyword},'%')		
+		</if>
+		<if test="sortType == 1 ">
+		where gameSort = "전략"	
+		</if>
+		<if test="sortType == 2 ">
+		where gameSort = "추상"	
+		</if>	
+		<if test="sortType == 3 ">
+		where gameSort = "컬렉터블"	
+		</if>	
+		<if test="sortType == 4 ">
+		where gameSort = "가족"	
+		</if>
+		<if test="sortType == 5 ">
+		where gameSort = "어린이"	
+		</if>
+		<if test="sortType == 6 ">
+		where gameSort = "파티"	
+		</if>
+		<if test="sortType == 7 ">
+		where gameSort = "테마"	
+		</if>						
+		<if test="sortType == 8 ">
+		where gameSort = "워게임"	
+		</if>	
+		<if test="orderType == 0 or orderType == null">
+		order by gameidx desc
+		</if>
+		<if test="orderType == 1">
+		order by gameidx asc
+		</if>
+		<if test="orderType == 2">
+		order by avg desc
+		</if>		
+		limit #{firstRow},#{gameCountPerPage};
+
+
+	</select>
+
+
+	<!-- 게임 장르별 분류 -->
+<!-- 	<select id="sortGame"
+		parameterType="com.bitcamp.cob.game.domain.SortType"
+		resultMap="gameMainResult"
+		resultType="com.bitcamp.cob.game.domain.GameMain">
+		select a.*
+		from (
+		select gl.gameIdx, gl.gamename, gl.gamesort,
+		gl.gamePerson, gl.gameTime,
+		gl.gameLmtAge, gl.gamePhoto,
+		avg(gr.revRating) as avg
+		from gamelist gl left outer join gamereview gr
+		on gl.gameidx = gr.gameIdx
+		group by gl.gameidx) a
+		where a.gamesort = #{sortKeyword}
+		order by gameidx desc;
+	</select> -->
+
+	<!-- 게임 상세페이지 -->
+	<select id="selectGamePage" resultMap="gamePageResult">
+		select a.*
+		from(select gl.*, avg(gr.revRating) as avg
+		from gamelist gl left outer join
+		gamereview gr
+		on gl.gameidx = gr.gameIdx
+		group by gl.gameidx) a
+		where a.gameIdx=#{gameidx};
+	</select>
+
+
+	<!-- 게임페이지 리뷰 등록 -->
+	<insert id="insertGameRev"
+		parameterType="com.bitcamp.cob.game.domain.GameReview"
+		useGeneratedKeys="true" keyProperty="gameIdx">
+		insert into gamereview
+		<if
+			test="revContent != null or revContent != '' or revRating != null or revRating != '' ">
+			(gameIdx,memIdx,revContent,revRating)
+			values
+			(#{gameIdx},#{memIdx},#{revContent},#{revRating});
+		</if>
+
+		<if
+			test="revContent == null or revContent == '' or revRating == null or revRating == '' ">
+			(revContent)
+			values
+			(#{revContent});
+		</if>
+	</insert>
+	<!--게임페이지 리뷰 출력 -->
+	<select id="selectReview" resultMap="gameRevResult">
+
+		select * from gamereview g , member1 m where g.memidx = m.memidx and
+		g.gameIdx = #{gameIdx} order by revidx desc limit 0,5;
+
+	</select>
+
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteRev"
+		parameterType="com.bitcamp.cob.game.domain.GameReview">
+		delete from gamereview where revidx = #{revIdx} and memidx = #{memIdx};
+	</delete>
+	<!--리뷰 수정  -->
+	<update id="EditRev"
+		parameterType="com.bitcamp.cob.game.domain.GameReview">
+		update gamereview set revRating=#{revRating} , revContent=#{RevContent} where revIdx=#{revIdx}
+	</update>	
+	<!-- 총 리뷰 수 -->	
+	<select id="countRev" resultType="Integer"
+		parameterType="com.bitcamp.cob.game.domain.SearchType">
+		SELECT count(*)
+		FROM gamereview
+		where gameidx = #{gameIdx}			
+	</select>
+	
+	<!-- 선호게임 등록 -->
+	<insert id="insertPreferGame"
+			parameterType="com.bitcamp.cob.game.domain.PreferGame"
+	>
+	insert into prefergame 
+	(gameidx,memidx)
+	values(#{gameIdx},#{memIdx})
+	
+	</insert> 
+	<!-- 선호게임 삭제  -->
+	<delete id="deletePreferGame"
+			parameterType="com.bitcamp.cob.game.domain.PreferGame"
+	>
+		delete from prefergame where gameidx = #{gameIdx} and memidx = #{memIdx}
+	</delete>
+	<!--선호게임 체크  -->
+	<select id="preferChk"
+			parameterType="com.bitcamp.cob.game.domain.PreferGame"
+			resultType="int"
+			>
+	
+		select count(*) from prefergame where gameidx = #{gameIdx} and memidx = #{memIdx}		
+	</select>
+	
+	<!-- 주문하기 -->
+	<insert id="insertOrder"
+			parameterType="com.bitcamp.cob.game.domain.GameOrder"
+	>
+		insert into orderList(memidx,gameidx,memname,gamePrice,shipAddress,phoneNum,merchant)
+		values(#{memIdx},#{gameIdx},#{memName},#{gamePrice},#{shipAddress},#{phoneNum},#{merchant})	
+			
+	</insert>
+	
+	<select id="selectOrderList"
+			resultMap="orderListResult"
+	>
+	select gl.gameName, gl.gamePrice, gl.gamePhoto, ol.memName , ol.memIdx,ol.shipAddress,ol.gameIdx,ol.orderDate
+	from project.orderList ol, project.gamelist gl
+	where ol.memIdx = #{memIdx} and gl.gameIdx=ol.gameIdx
+	order by cusidx desc;	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

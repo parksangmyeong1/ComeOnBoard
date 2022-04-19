@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitcamp.cob.member.dao.MemberDao">
+
+	<insert id="insertMember"
+			parameterType="com.bitcamp.cob.member.domain.Member"
+			useGeneratedKeys="true"
+			keyProperty="memIdx"
+	>
+			insert into member1 (memId, nickName, memPassword, memName, memBirth, memGender, preferAddr, memTel, memEmail, memPhoto) 
+			value (#{memId}, #{nickName}, #{memPassword}, #{memName}, #{memBirth}, #{memGender}, #{preferAddr}, #{memTel}, #{memEmail}, #{memPhoto});	
+	
+	</insert>
+	
+	<select id="getAllMemberInfo"
+			resultType="com.bitcamp.cob.member.domain.Member"
+	>
+			select * from member1 where memIdx = #{memIdx}
+	</select>
+	
+ 	<select id="selectById"
+ 			resultType="int"
+ 	>
+ 		select count(*) from member1 where memId=#{id}
+ 	</select>
+ 	
+ 	<select id="selectByKakaoId"
+ 			resultType="com.bitcamp.cob.member.domain.LoginInfo"
+ 	>
+ 		select * from member1 where memId=#{id}
+ 	</select>
+ 	
+ 	<select id="selectPwById"
+ 			resultType="int"
+ 	>
+ 		select count(*) from member1 where memPassword=#{memPassword} and memId = #{memId}
+ 	</select>
+ 	
+ 	<select id="selectByNickName"
+ 			resultType="int"
+ 	>
+ 		select count(*) from member1 where nickName=#{nickName}
+ 	</select>
+ 	
+ 	<select id="selectByIdPw"
+ 			resultType="com.bitcamp.cob.member.domain.LoginInfo"
+ 	>
+ 		select * from member1 where memId=#{param1} and memPassword=#{param2}
+ 	</select>
+ 	
+	<select id="selectByIdx"
+ 			resultType="com.bitcamp.cob.member.domain.LoginInfo"
+ 	>
+ 		select * from member1 where memIdx=#{param1}
+ 	</select>	
+ 	
+ 	<select id="getMemId"
+ 			parameterType="com.bitcamp.cob.member.domain.FindIdPwInfo"
+ 			resultType="String"
+ 	>
+ 		select memId from member1 where memName=#{memName} and memEmail=#{memEmail}
+ 	</select>
+ 	
+ 	<select id="getMemPw"
+ 			parameterType="com.bitcamp.cob.member.domain.FindIdPwInfo"
+ 			resultType="int"
+ 	>
+ 		select count(*) from member1 where memId=#{memId} and memEmail=#{memEmail} and memName=#{memName};
+ 	</select>
+ 	
+ 	<update id="updateMember"
+ 			parameterType="com.bitcamp.cob.member.domain.Member"
+ 	>
+ 		update member1 set nickName=#{nickName},
+ 							memBirth=#{memBirth},
+ 							memGender=#{memGender},
+ 							memEmail=#{memEmail},
+ 							memTel=#{memTel},
+ 							preferAddr=#{preferAddr}
+ 				where memIdx=#{memIdx}						
+ 	</update>
+ 	
+ 	<update id="updateMemberAuth">
+ 		update member1 set memAuth=#{memAuth} where memIdx=#{memIdx}
+ 	</update>
+ 	
+ 	<update id="updateMemPhoto"
+ 			parameterType="com.bitcamp.cob.member.domain.Member"
+ 	>
+ 		update member1 set memPhoto=#{memPhoto}
+ 				where memIdx=#{memIdx}						
+ 	</update>
+ 	
+ 	<update id="updatePwById"
+ 			parameterType="com.bitcamp.cob.member.domain.Member"
+ 	>
+ 		update member1 set memPassword=#{memPassword}
+ 				where memId=#{memId}						
+ 	</update>
+ 	
+ 	<delete id="deleteMember"
+ 			parameterType="int"
+	>
+		delete from member1 where memIdx=#{memIdx}
+	</delete>
+	
+	
+	<select id="selectFollowFriendByIdx"
+ 		resultType="com.bitcamp.cob.member.domain.MemberInfo"
+ 	>
+ 		
+ 		select *, (select count(*) from friends where memIdxFollow = #{param1}) as friendChk from member1 m, friends f where memIdxFollow =#{param1} and m.memIdx = f.memIdxFollowing	 
+ 	</select>
+ 	
+ 	<select id="selectFollowingFriendByIdx"
+ 		resultType="com.bitcamp.cob.member.domain.MemberInfo"
+ 	>
+ 		
+ 		select *, (select count(*) from friends f where m.memIdx = f.memIdxFollowing and memIdxFollow = #{param1}) as followChk from member1 m where memIdx = any (select memIdxFollow from friends where memIdxFollowing = #{param1}); 
+ 	</select>
+	
+	<select id="searchMember"
+			parameterType="String"
+			resultType="com.bitcamp.cob.member.domain.MemberInfo"
+	>
+		select * from member1 m left join prefergame p on m.memIdx = p.memIdx left join gamelist g on p.gameIdx = g.gameIdx where m.nickName like CONCAT('%', #{searchKeyword}, '%');
+	</select>
+	
+	<!-- 친구 관련 Rest mapper  -->
+	<insert id="postFriend"
+			parameterType="int"
+	>
+		insert into friends (memIdxFollow, memIdxFollowing) value(#{param1}, #{param2});
+	</insert>
+	<select id="getMember"
+			parameterType="int"
+			resultType="com.bitcamp.cob.member.domain.MemberInfo"
+	>
+		select *, (select count(*) from friends f where m.memIdx = f.memIdxFollowing and memIdxFollow = #{memIdx}) as FollowChk from member1 m where memIdx = #{idx};
+
+	</select>
+	
+	<select id="recommendMemberByIdx"
+			parameterType="com.bitcamp.cob.member.domain.RecommendType"
+			resultType="com.bitcamp.cob.member.domain.MemberInfo">
+		select *, (select count(*) from friends f where m.memIdx = f.memIdxFollowing and memIdxFollow = #{memIdx}) as followChk from member1 m where preferAddr = #{preferAddr} and not memIdx = ${memIdx} ;	
+	</select>
+	
+	<delete id="deleteFriend"
+			parameterType="int"
+	>
+		delete from friends where memIdxFollow = #{memIdx} and memIdxFollowing = #{frIdx};
+	</delete>
+	
+
+	<!-- 선호 게임 리스트 만들기 -->
+	<select id="getPreferGame"
+			parameterType="int"
+			resultType="com.bitcamp.cob.member.domain.GameInfo"
+	>
+	 	select g.gameIdx, gameName from gamelist g join prefergame p where g.gameIdx = p.gameIdx and memIdx = ${memIdx};
+	</select> 
+
+</mapper>

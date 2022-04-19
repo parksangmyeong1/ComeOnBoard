@@ -1,0 +1,330 @@
+@charset "utf-8";
+
+* {
+margin: 0;
+padding: 0;
+}
+.header {
+    position: relative;
+    z-index: 20;
+    min-width: 980px;
+    width: 100%;
+    height: 140px;
+    background-color: rgb(66, 133, 244);
+    text-align: center;
+}
+ul {
+list-style: none;
+}
+
+.MultiBar {
+    display: inline-block;
+    height: 30px;
+    width: 100%;
+    max-width: 1280px;
+    padding: 12px 0px 5px;
+} 
+.area_gnb {
+    font-size: 12px;
+    width: 500px;
+    height: 30px;
+    float: right;
+    color: white;
+}
+.area_gnb>li {
+    float: right;
+    width: 75px;
+}
+.container {
+    display: inline-block;
+    height: 93px;
+    width: 100%;
+    max-width: 1280px;
+    position: relative;
+}
+.logo {
+    position: absolute;
+    left: 50%;
+    width: 180px;
+    margin-left: -90px;
+}
+.main_naviwrap {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1280px;
+    height: 80px;
+    margin-top: -98px;
+    padding-bottom: 10px;
+}
+.main_nav {
+    padding-top: 45px;
+}
+.main_nav>.left_ul {
+    float: left;
+    overflow: hidden;
+}
+.main_nav>.right_ul {
+    float: right;
+    overflow: hidden;
+}
+
+.main_nav>ul>li {
+    color: white;
+    width: 85px;
+    float: left;
+}
+
+
+
+.carousel-inner > .carousel-item > img {
+	min-width: 100%;
+	min-height: 100%;
+} 
+
+
+
+.cafe_wrap{
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+
+#carouselExampleControls{
+    margin: 10px;
+    max-width: 65%;
+    height: 380px;
+    display: inline-block;
+    float: left;
+}
+.carousel-item{
+	width: 600px;
+    height: 350px;
+}
+.basic_info{
+    margin: 10px;
+    padding: 10px;
+    max-width: 30%;
+    height: 380px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.li_warp{
+    margin-top: 30px;
+}
+
+.info_menu{
+    margin-left: 10px;
+}
+.info{
+    margin: 50px auto;
+}
+.reservation{
+    max-width: 950px;
+    margin: 50px auto;
+}
+
+.review{
+    margin: 50px auto;
+}
+
+td>.btn{
+    margin: 10px 15px;
+    width: 150px;
+    height: 50px;   
+}
+.person4{
+    margin: 10px 0;
+}
+.person4>table{
+    margin: 0 auto;
+}
+.person8>table{
+    margin: 0 auto;
+}
+
+#id{
+    margin: 10px 10px;
+}
+#regdate{
+    float: right;
+    margin: 10px 10px;
+}
+#post{
+    margin: 10px 10px;
+}
+.pagination{
+    float: right;
+}
+.pagination>li{
+    margin-left: 10px;
+}
+.first_hr{
+    border: none;
+    height: 1px;
+    background-color: black;
+}
+#post{
+    margin: 10px 10px;
+}
+.modify_rev_form{
+	display: none;
+}
+
+.mod_del{
+	cursor: pointer;
+}
+
+.media p{
+	white-space: pre;
+}
+.media li{
+	color: #007bff;
+}
+.media li :hover{
+	text-decoration: underline;
+}
+#date::placeholder{
+	color: #28a745;
+}
+
+.table td{
+	vertical-align: middle;
+} 
+
+.reserv_table{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+
+.star-rating {
+display: flex;
+flex-direction: row-reverse;
+font-size: 1.25rem;
+line-height: 2.5rem;
+justify-content: space-around;
+padding: 0 0.2em;
+text-align: center; 
+width: 10em;
+margin-left: 5px;
+}
+
+.star-rating input {
+display: none;
+}
+
+.star-rating label {
+-webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: #000000;
+cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+-webkit-text-fill-color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+-webkit-text-fill-color: #fff370;
+}
+
+
+
+
+
+
+
+.star-rating-rev {
+display: flex;
+flex-direction: row-reverse;
+font-size: 1.25rem;
+line-height: 2.5rem;
+justify-content: space-around;
+padding: 0 0.2em;
+text-align: center; 
+width: 10em;
+margin-left: 5px;
+}
+
+.star-rating-rev input {
+display: none;
+}
+
+.star-rating-rev label {
+-webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: #000000;
+cursor: pointer;
+}
+
+.star-rating-rev :checked ~ label {
+-webkit-text-fill-color: gold;
+}
+
+.star-rating-rev label:hover,
+.star-rating-rev label:hover ~ label {
+-webkit-text-fill-color: #fff370;
+}
+
+
+/* 버튼 회전 */
+@-webkit-keyframes rotate-hor-center {
+0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+}
+100% {
+    -webkit-transform: rotateX(-360deg);
+            transform: rotateX(-360deg);
+}
+}
+@keyframes rotate-hor-center {
+0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+}
+100% {
+    -webkit-transform: rotateX(-360deg);
+            transform: rotateX(-360deg);
+}
+}
+.rotate-hor-center {
+    -webkit-animation: rotate-hor-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: rotate-hor-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+
+/* 파일 미리보기 */
+ul.cvf_uploaded_files {
+    list-style-type: none; margin: 20px 0 0 0; padding: 0;
+}
+ul.cvf_uploaded_files li {
+    background-color: #fff; float: left; margin: 2px; width: 200px; height: 100px; line-height: 100px; position: relative;
+}
+ul.cvf_uploaded_files li img.img-thumb {
+    width: 200px; height: 100px; border-radius: 5px;
+}
+ul.cvf_uploaded_files .ui-selected {
+    background: red;
+}
+ul.cvf_uploaded_files .highlight {
+    border: 1px dashed #000; width: 150px; background-color: #ccc; border-radius: 5px;
+}
+ul.cvf_uploaded_files .delete-btn {
+    width: 24px; height: 24px; border: 0; position: absolute; top: 2.5px; right: 0px; padding: 0;
+}
+.bg-success {
+    padding: 7px;
+}
+.thumnail {
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+}

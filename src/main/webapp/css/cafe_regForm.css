@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+         * {
+        margin: 0;
+        padding: 0;
+        }
+        .header {
+            position: relative;
+            z-index: 20;
+            min-width: 980px;
+            width: 100%;
+            height: 140px;
+            background-color: rgb(66, 133, 244);
+            text-align: center;
+        }
+        ul {
+        list-style: none;
+        }
+
+        .MultiBar {
+            display: inline-block;
+            height: 30px;
+            width: 100%;
+            max-width: 1280px;
+            padding: 12px 0px 5px;
+        } 
+        .area_gnb {
+            font-size: 12px;
+            width: 500px;
+            height: 30px;
+            float: right;
+            color: white;
+        }
+        .area_gnb>li {
+            float: right;
+            width: 75px;
+        }
+        .container {
+            display: inline-block;
+            height: 93px;
+            width: 100%;
+            max-width: 1280px;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            left: 50%;
+            width: 180px;
+            margin-left: -90px;
+        }
+        .main_naviwrap {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1280px;
+            height: 80px;
+            margin-top: -98px;
+            padding-bottom: 10px;
+        }
+        .main_nav {
+            padding-top: 45px;
+        }
+        .main_nav>.left_ul {
+            float: left;
+            overflow: hidden;
+        }
+        .main_nav>.right_ul {
+            float: right;
+            overflow: hidden;
+        }
+
+        .main_nav>ul>li {
+            color: white;
+            width: 85px;
+            float: left;
+        }
+
+
+        .cafe_wrap{
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .first_hr{
+            border: none;
+            height: 1px;
+            background-color: black;
+        }
+        .info_menu{
+            margin-top: 50px;
+        }
+        
+        #thumbnail>img, #imgs>img {
+			height: 200px;
+			width: 400px;
+		}
+		
+		#thumbnail, #imgs{
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+
+ 		#preview{
+			height: 200px;
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+		#thumbnail{
+			height: 200px;
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+		#preview>img, #thumbnail>img{
+			height: 200px;
+			width: 400px;
+		}
+
+
+
+        /* 파일 미리보기 */
+        ul.uploaded_files {
+            list-style-type: none; margin: 20px 0 0 0; padding: 0;
+        }
+        ul.uploaded_files li {
+            background-color: #fff; float: left; margin: 2px; width: 200px; height: 100px; line-height: 100px; position: relative;
+        }
+        ul.uploaded_files li img.img-thumb {
+            width: 200px; height: 100px; border-radius: 5px;
+        }
+        ul.uploaded_files .ui-selected {
+            background: red;
+        }
+        ul.uploaded_files .highlight {
+            border: 1px dashed #000; width: 150px; background-color: #ccc; border-radius: 5px;
+        }
+        ul.uploaded_files .delete-btn {
+            width: 24px; height: 24px; border: 0; position: absolute; top: 2.5px; right: 0px; padding: 0;
+        }
+        .bg-success {
+            padding: 7px;
+        }
+        .thumnail {
+            height: 150px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+

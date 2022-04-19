@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 매퍼의 네임스페이스는 식별자(구분용. 보통 패키지 이름을 쓴다) -->
+<mapper namespace="com.bitcamp.cob.group.dao.GroupDao">
+
+	<!-- gamegroup1을 나중에 gamegroup으로 수정해야함(외래키 설정 때문에) -->
+
+
+	<insert id="insertGroupBoardContent"
+		parameterType="com.bitcamp.cob.group.domain.Group"
+		useGeneratedKeys="true" keyProperty="grpIdx">
+		<!-- groupList에서 출력시에는 jstl에서 패턴 사용(op-list.jsp에서 참고하기). -> Date형식(yyyy-mm-dd)으로 
+			출력 -->
+		insert into gamegroup1 ( nickName, memIdx, grpPostEndDate, grpDate,
+		grpContent,
+		grpMaxMem, grpTitle, loc, genre)
+		values ( #{nickName},
+		#{memIdx}, #{grpPostEndDate}, #{grpDate}, #{grpContent},
+		#{grpMaxMem},
+		#{grpTitle}, #{loc},#{genre})
+	</insert>
+
+
+
+	<!-- mapper가 2개 였음 (grpIdx가 없는쪽이 적용된거 -> 추가함) -->
+	<select id="selectGroupBoardContent" parameterType="int"
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select *
+		from gamegroup1
+		where grpIdx=#{grpIdx} <!-- 매개변수에 grpIdx를 전달해줘야 처리가 
+			가능하다!! -->
+		order by grpDate
+	</select>
+
+
+	<!-- update into gamegroup1 ( grpPostEndDate, grpDate, grpContent, grpMaxMem, 
+		grpTitle, loc, genre) -->
+	<update id="updateGroupBoardContent"
+		parameterType="com.bitcamp.cob.group.domain.Group">
+		update gamegroup1
+		set grpPostEndDate=#{grpPostEndDate},
+		grpDate=#{grpDate}, grpContent=#{grpContent},
+		grpMaxMem=#{grpMaxMem},
+		grpTitle=#{grpTitle}, loc=#{loc}, genre=#{genre}
+		where grpIdx=#{grpIdx}
+	</update>
+	<!-- groupEditor에서 제목과 내용만 업데이트 -->
+	<update id="updateCreatedTitleAndContent"
+		parameterType="com.bitcamp.cob.group.domain.TitleAndContent">
+		update gamegroup1
+		set grpTitle=#{grpTitle},
+		grpContent=#{grpContent}
+		where grpIdx=#{grpIdx} and memIdx=#{memIdx}
+	</update>
+
+
+	<delete id="deleteGroupBoardContent"
+		parameterType="com.bitcamp.cob.group.domain.Group">
+		delete from project.gamegroup1
+		where grpIdx=#{grpIdx}
+	</delete>
+
+
+	<select id="reSelectContent"
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select *
+		from gamegroup1
+		where grpIdx=#{grpIdx}
+	</select>
+
+
+	<!-- ArrayList<Group> Select -->
+	<select id="selectList"
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select *
+		from gamegroup1
+		order by grpIdx desc
+		limit #{param1},
+		#{param2}
+	</select>
+	<!-- 리스트 그룹 갯수 추출 -->
+	<select id="selectAllCount"
+		parameterType="com.bitcamp.cob.group.domain.SearchType"
+		resultType="int">
+		select count(*)
+		from gamegroup1
+		<where>
+			<!-- 값이 null일 경우 어떻게 해야하나? -->
+			<if test="keyword != null and searchCategory == 'searchAll' ">
+				loc like concat ('%',#{keyword},'%')
+				or
+				genre like concat
+				('%',#{keyword},'%')
+				or
+				grpTitle like concat ('%',#{keyword},'%')
+				or
+				nickName like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchLoc' ">
+				loc like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchGenre' ">
+				genre like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchTitle' ">
+				grpTitle like concat ('%',#{keyword},'%')
+			</if>
+			<if
+				test="keyword != null and searchCategory == 'searchNickname'  ">
+				nickName like concat ('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+	<!-- 검색을 통한 select -->
+	<select id="selectListBySearch"
+		parameterType="com.bitcamp.cob.group.domain.SearchType"
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select * from gamegroup1
+
+		<where>
+			<!-- 값이 null일 경우 어떻게 해야하나? -->
+			<if test="keyword != null and searchCategory == 'searchAll' ">
+				loc like concat ('%',#{keyword},'%')
+				or
+				genre like concat
+				('%',#{keyword},'%')
+				or
+				grpTitle like concat ('%',#{keyword},'%')
+				or
+				nickName like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchLoc' ">
+				loc like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchGenre' ">
+				genre like concat ('%',#{keyword},'%')
+			</if>
+			<if test="keyword != null and searchCategory == 'searchTitle' ">
+				grpTitle like concat ('%',#{keyword},'%')
+			</if>
+			<if
+				test="keyword != null and searchCategory == 'searchNickname'  ">
+				nickName like concat ('%',#{keyword},'%')
+			</if>
+		</where>
+		order by grpIdx desc
+		limit #{firstRow}, #{count}
+	</select>
+
+
+
+
+
+
+	<!-- 모임 참가 insert -->
+	<insert id="insertJoinGroup" parameterType="int">	<!-- parameterType이 domain 형식일 때: domain클래스의 변수명을 그대로 적어주어도 됨(식별가능) -->
+		<!-- domain형식이 아니라면 여러 값이 들어올 때 어떤 값이 어떤 매개변수에 해당되는지 모르므로 #{param(순서숫자)}를 
+			쓰거나 컨트롤러의 메소드 매개변수 위치에서 (@RequestParam("식별자") 타입 진짜매개변수) 설정을 해주어야 한다 -->
+		insert into groupreg1 (memIdx, grpIdx)
+		values (#{param1}, #{param2})
+	</insert>
+	
+	
+	<!--  -->
+
+
+	<!-- 참가한 모임 정보 select --><!-- *** --><!-- 오류나면 먼저 확인. GroupManagement컨트롤러에서 사용. 지우던가 -->
+	<!-- parameterType="com.bitcamp.cob.group.domain.Group" 이게 있어야 하나? -->
+	<select id="selectJoinGroup" 
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select gg.grpIdx, gg.grpTitle, reg.memIdx
+		from gamegroup1 as gg
+		left outer join groupreg1 as reg
+		on gg.grpIdx = reg.grpIdx
+		where reg.memIdx = #{memIdx} and grpConfirm = 1;
+	</select>
+
+
+	<!-- 내가 만든 모임 정보 select -->
+	<select id="selectMyGroup" parameterType="int"
+		resultType="com.bitcamp.cob.group.domain.Group">
+		select *
+		from gamegroup1
+		where memIdx=#{memIdx}
+	</select>
+
+
+	<!-- 모임에 참가한 모든 사람의 닉네임 가져오기 -->
+	<select id="selectRegGroupNicknameMemidxGrpidx"
+		parameterType="int"
+		resultType="com.bitcamp.cob.group.domain.NicknameMemidxGrpidx">
+		select nickName, mem.memIdx, reg.grpIdx
+		from groupreg1 as
+		reg
+		right join member1 as mem
+		on reg.memIdx = mem.memIdx
+		where reg.grpIdx
+		= #{grpIdx};
+	</select>
+
+	<!-- 참여신청 수락 -->
+	<update id="judgeRequest">
+		update groupreg1
+		set grpConfirm = 1
+		where
+		memIdx=#{param1} and grpIdx=#{param2}
+	</update>
+
+
+	<!-- 참여대기자 거절 -->
+	<delete id="refuseApplyForParticipation">
+		delete from groupreg1
+		where memIdx = #{param1} and
+		grpIdx = #{param2} and grpConfirm = 0
+	</delete>
+
+	<!-- 참가한 사람 추방 -->
+	<delete id="exileAttendant">
+		delete from groupreg1
+		where memIdx = #{param1} and
+		grpIdx = #{param2} and grpConfirm = 1
+	</delete>
+
+
+
+
+	<!-- grpConfirm = 0인 groupreg1 리스트 -->
+	<select id="selectGrpConfirmZero" parameterType="int"
+		resultType="com.bitcamp.cob.group.domain.NicknameMemidxGrpidx">
+		select nickName, mem.memIdx, reg.grpIdx
+		from groupreg1 as
+		reg
+		right join member1 as mem
+		on reg.memIdx = mem.memIdx
+		where reg.grpIdx
+		= #{grpIdx} and reg.grpConfirm = 0
+	</select>
+	<!-- grpConfirm = 1인 (참가 승인)groupreg1 리스트 -->
+	<select id="selectGrpConfirmOne" parameterType="int"
+		resultType="com.bitcamp.cob.group.domain.NicknameMemidxGrpidx">
+		select nickName, mem.memIdx, reg.grpIdx
+		from groupreg1 as
+		reg
+		right join member1 as mem
+		on reg.memIdx = mem.memIdx
+		where reg.grpIdx
+		= #{grpIdx} and reg.grpConfirm = 1
+	</select>
+	
+	
+	<!-- grpConfirm=0 인 사람중에 로그인한 사람 memIdx 찾기 -->
+<!--  	<select id="ApplyingForParticipation"
+		resultType="com.bitcamp.cob.group.domain.RegGroup">
+		select mem.memIdx, reg.grpConfirm 
+		from groupreg1 as reg
+		right join member1 as mem
+		on reg.memIdx = mem.memIdx
+		where reg.grpIdx = #{grpIdx} and reg.grpConfirm = 0
+	</select> -->
+	 <select id="ApplyingForParticipation"
+		resultType="com.bitcamp.cob.group.domain.RegGroup">
+		select * from groupreg1 where grpIdx = #{param1} and memIdx = #{param2};
+	</select>
+
+	<!-- 모임 참가 인원 -->
+	<select id="selectRegMemCount" parameterType="int"
+		resultType="int">
+		select count(grpRegIdx)
+		from groupreg1
+		where grpIdx =
+		#{grpIdx} and grpConfirm = 1
+	</select>
+	<!-- 모임 최대 인원 -->
+	<select id="selectMaxMemCount" parameterType="int"
+		resultType="int">
+		select grpMaxMem from gamegroup1 where grpIdx = #{grpIdx}
+	</select>
+
+
+
+	<!-- 참가한 모임 탈퇴 -->
+	<delete id="deleteJoinedGroup">
+		delete from groupreg1
+		where grpIdx=#{param1} and memIdx=#{param2}
+	</delete>
+	
+	
+	
+
+
+</mapper>
+
+
+

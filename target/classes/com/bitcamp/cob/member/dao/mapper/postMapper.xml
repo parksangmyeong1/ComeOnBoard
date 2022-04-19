@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<!-- 인터페이스의 full name을 namespace로 설정 -->
+<mapper namespace="com.bitcamp.cob.post.dao.PostDao">
+	
+	<!-- select의 결과를 매핑하는 설정 -->
+	<resultMap id="postListResult" 
+		type="com.bitcamp.cob.post.domain.Post">
+		<id column="postIdx" property="postIdx"/>
+		<result column="memIdx" property="memIdx"/>
+		<result column="postWriter" property="postWriter"/>
+		<result column="postSort" property="postSort"/>
+		<result column="postContent" property="postContent"/>
+		<result column="postRegDate" property="postRegDate"/>
+		<result column="views" property="views"/>
+		<result column="postLike" property="postLike"/>
+		<result column="postDislike" property="postDislike"/>
+		<result column="postRep" property="postRep"/>
+		<result column="memPhoto" property="memPhoto"/>
+	</resultMap>
+	
+	<resultMap id="commListResult" 
+		type="com.bitcamp.cob.comment.domain.Comment">
+		<id column="commIdx" property="commIdx"/>
+		<result column="postIdx" property="postIdx"/>
+		<result column="commWriter" property="commWriter"/>
+		<result column="commContent" property="commContent"/>
+		<result column="commRegDate" property="commRegDate"/>
+		<result column="commLike" property="commLike"/>
+		<result column="commDislike" property="commDislike"/>
+		<result column="commRep" property="commRep"/>
+		<result column="memPhoto" property="memPhoto"/>
+	</resultMap>
+	
+	<resultMap id="recommListResult" 
+		type="com.bitcamp.cob.recomment.domain.Recomment">
+		<id column="recommIdx" property="recommIdx"/>
+		<result column="commIdx" property="commIdx"/>
+		<result column="recommWriter" property="recommWriter"/>
+		<result column="recommContent" property="recommContent"/>
+		<result column="recommRegDate" property="recommRegDate"/>
+		<result column="recommLike" property="recommLike"/>
+		<result column="recommDislike" property="recommDislike"/>
+		<result column="recommRep" property="recommRep"/>
+		<result column="memPhoto" property="memPhoto"/>
+	</resultMap>
+	
+	<!-- 게시글 등록 -->
+	<insert id="insertPost"
+		parameterType="com.bitcamp.cob.post.domain.Post"
+		useGeneratedKeys="true"
+		keyProperty="postIdx">
+		insert into post (memIdx, postWriter, postTitle, postContent, postSort)
+		value (#{memIdx}, #{postWriter}, #{postTitle}, #{postContent}, #{postSort})
+	</insert>
+	
+	<!-- 게시글 리스트 출력 -->
+	<select id="selectAll"
+		resultMap="postListResult">
+		select * from post order by postIdx desc
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="editPost"
+		parameterType="com.bitcamp.cob.post.domain.Post">
+		update post set postSort = #{postSort}, postTitle = #{postTitle}, postContent = #{postContent} where postIdx = #{postIdx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost">
+		delete from post where postIdx = #{postIdx}
+	</delete>
+	
+	<!-- 이전 다음 현재글 출력 -->
+	<select id="selectPostDetail" resultMap="postListResult">
+	<![CDATA[
+		select p.*, m.memPhoto from post p, member1 m where postIdx IN (
+          ( SELECT postIdx FROM post WHERE postIdx < #{postIdx} ORDER BY postIdx DESC LIMIT 1 ),
+          ( SELECT postIdx FROM post WHERE postIdx = #{postIdx} ),
+          ( SELECT postIdx FROM post WHERE postIdx > #{postIdx} ORDER BY postIdx LIMIT 1)
+       ) and m.memIdx = p.memIdx
+       ]]>
+	</select>
+	
+	<!-- 수정할 게시글 가져오기 -->
+	<select id="selectByIdx" resultMap="postListResult"> 
+		select * from post where postIdx = #{postIdx}
+	</select>
+	
+	<!-- 게시글의 총 갯수 -->
+	<select id="countPost" resultType="int">
+		<if test="!(postSort!=null and postSort!='')">
+			select count(*) from post
+		</if>
+		<if test="postSort!=null and postSort!=''">
+			select count(*) from post where postSort = #{postSort}
+		</if>
+	</select>
+	
+	<select id="countPost1" resultType="int">
+		select count(*) from post where memIdx = #{memIdx}
+	</select>
+	
+	<select id="countPagingPost"
+		parameterType="java.util.HashMap"
+		resultType="integer">
+		select count(*) from post 
+		<where>
+			<if test="item1.searchType=='both'">
+				postTitle like concat('%', #{item1.keyword}, '%') 
+				or postContent like concat('%', #{item1.keyword}, '%')
+			</if>
+			<if test="item1.searchType=='title'">
+				postTitle like concat('%', #{item1.keyword}, '%') 
+			</if>
+			<if test="item1.searchType=='content'">
+				postContent like concat('%', #{item1.keyword}, '%') 
+			</if>
+			<if test="item1.searchType=='nickName'">
+				postWriter like concat('%', #{item1.keyword}, '%') 
+			</if>
+		</where>		
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="addViews">
+		update post set views = views + 1 where postIdx = #{postIdx}
+	</update>
+	
+	<!-- 게시글 페이징 -->
+	<select id="pagingPost"
+		resultMap="postListResult">
+		select * from post order by postIdx desc limit #{start}, #{cntPerPage};
+	</select>
+	
+	<!-- 게시글 페이징 -->
+	<select id="searchPost"
+		resultMap="postListResult">
+		select * from post where memIdx = #{param2} order by postIdx desc 
+		limit #{param1.start}, #{param1.cntPerPage};
+	</select>
+	
+	<select id="selectBySearch"
+		parameterType="java.util.HashMap"
+		resultMap="postListResult"> 
+		select * from post 
+		<where>
+			<if test="item1.searchType=='both'">
+				postTitle like concat('%', #{item1.keyword}, '%') 
+				or postContent like concat('%', #{item1.keyword}, '%')
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='title'">
+				postTitle like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='content'">
+				postContent like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='nickName'">
+				postWriter like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectBySearchAndPaging"
+		parameterType="java.util.HashMap"
+		resultMap="postListResult"> 
+		select * from post 
+		<where>
+			<if test="item1.searchType=='both'">
+				postSort = #{postSort} and (postTitle like concat('%', #{item1.keyword}, '%') 
+				or postContent like concat('%', #{item1.keyword}, '%'))
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='title'">
+				postSort = #{postSort} and postTitle like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='content'">
+				postSort = #{postSort} and postContent like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.searchType=='nickName'">
+				postSort = #{postSort} and postWriter like concat('%', #{item1.keyword}, '%') 
+				order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+			<if test="item1.keyword==null or item1.keyword==''">
+				postSort = #{postSort} order by postIdx desc limit #{item2.start}, #{item2.cntPerPage}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertComment"
+		parameterType="com.bitcamp.cob.comment.domain.Comment"
+		useGeneratedKeys="true"
+		keyProperty="commIdx">
+		insert into comment (postIdx, memIdx, commContent)
+		value (#{postIdx}, #{memIdx}, #{commContent})
+	</insert>	
+	
+	<!-- 댓글 조회 -->
+	<select id="selectCommList"
+		resultMap="commListResult">
+		select c.*, m.nickName as commWriter from comment c, member1 m 
+		where postIdx=#{postIdx} and m.memIdx = c.memIdx order by commIdx;
+	</select>
+	
+	<delete id="deleteComment">
+		delete from comment where commIdx = #{commIdx}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="editComment">
+		update comment set commContent = #{param2} where commIdx = #{param1}
+	</update>
+	
+	<!-- 댓글 수 조회 -->
+	<select id="countComment"
+		resultType="int">
+		select count(*) from comment where postIdx = #{postIdx};
+	</select>
+	
+	<select id="selectBestComment"
+		resultMap="commListResult">
+		select c.*,m.nickName as commWriter , m.memPhoto as memPhoto
+		from comment c, member1 m where postIdx = #{postIdx} and m.memIdx=c.memIdx 
+		order by commLike desc limit 1
+	</select>
+	
+	<select id="selectDislike"
+		parameterType="int"
+		resultType="int">
+		select commDislike from comment where commIdx = #{commIdx}
+	</select>
+	
+	<insert id="insertRecomment"
+		parameterType="com.bitcamp.cob.recomment.domain.Recomment"
+		useGeneratedKeys="true"
+		keyProperty="recommIdx">
+		insert into recomment (postIdx, commIdx, memIdx, recommContent)
+		value (#{postIdx}, #{commIdx}, #{memIdx}, #{recommContent})
+	</insert>
+	
+	<select id="selectRecommList"
+		resultMap="recommListResult">
+		select r.*, m.nickName as recommWriter, m.memPhoto as memPhoto 
+		from recomment r, member1 m 
+		where postIdx = #{postIdx} and m.memIdx = r.memIdx;
+	</select>
+	
+	<delete id="deleteRecomment">
+		delete from recomment where recommIdx = #{recommIdx}
+	</delete>
+	
+	<update id="editRecomment">
+		update recomment set recommContent = #{param2} where recommIdx = #{param1}
+	</update>
+	
+	<insert id="insertCheck">
+		insert into checklike (type, tableType, idx, memIdx)
+		values (#{type}, #{tableType}, #{idx}, #{memIdx})
+	</insert>
+	
+	<select id="selectLikeCheck"
+		resultType="int">
+		select count(*) from checklike 
+		where type=#{type} and tableType=#{tableType} and idx=#{idx} and memIdx=#{memIdx}
+	</select>
+	
+	<update id="addbutton"
+		parameterType="com.bitcamp.cob.post.domain.CheckRequest">
+		update 
+		<if test="tableType=='post'">
+			post
+				<set>
+					<if test="type=='like'">
+						postLike = postLike + 1  
+					</if>
+					<if test="type=='dislike'">
+						postDislike = postDislike + 1
+					</if>
+					<if test="type=='rep'">
+						postRep = postRep + 1  
+					</if>
+				</set>
+				where postIdx = #{idx};
+		</if>
+		<if test="tableType=='comment'">
+			comment
+				<set>
+					<if test="type=='like'">
+						commLike = commLike + 1 
+					</if>
+					<if test="type=='dislike'">
+						commDislike = commDislike + 1 
+					</if>
+					<if test="type=='rep'">
+						commRep = commRep + 1  
+					</if>
+				</set>
+				where commIdx = #{idx};
+		</if>
+		<if test="tableType=='recomment'">
+			recomment 
+				<set>
+					<if test="type=='like'">
+						recommLike = recommLike + 1  
+					</if>
+					<if test="type=='dislike'">
+						recommDislike = recommDislike + 1
+					</if>
+					<if test="type=='rep'">
+						recommRep = recommRep + 1  
+					</if>
+				</set>
+				where recommIdx = #{idx};
+		</if>
+	</update>
+	
+	<select id="getComment"
+		resultType="int">
+		select count(*) from comment where postIdx = #{postIdx}
+	</select>
+	
+	<select id="getCommentList"
+		parameterType="com.bitcamp.cob.comment.domain.CommentPagingRequest"
+		resultType="com.bitcamp.cob.comment.domain.Comment">
+		select c.*, m.nickName as commWriter, m.memPhoto as memPhoto from comment c, member1 m 
+		where postIdx = #{postIdx} and m.memIdx = c.memIdx 
+		order by commIdx desc limit #{startNum}, #{commPerPage}
+	</select>
+</mapper>

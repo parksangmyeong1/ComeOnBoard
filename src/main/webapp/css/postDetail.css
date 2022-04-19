@@ -1,0 +1,422 @@
+@charset "UTF-8";
+
+.Wrapper{
+        width: 1050px;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+    .Wrapper>.WritingWrap{
+        width: 860px;
+    }
+    .Wrapper>.WritingWrap>.contents{
+        border: 1px solid #CCC;
+        padding: 0 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    /* board_header */
+    .board_header{
+        margin-top: 15px;
+        padding-bottom: 10px;
+        overflow: hidden;
+        border-bottom: 1px solid #CCC;
+    }
+    .board_header>h3>a{
+        float: left;
+        margin-right: 10px;
+    }
+    .board_header>.categori {
+        float: left;
+        border-left: 1px solid #AAA;
+        border-right: 1px solid #AAA;
+        padding: 0 10px;
+    }
+
+    .board_header>.categori-right {
+        float: right;
+        border-left: 1px solid #AAA;
+        padding: 0 10px;
+    }
+    .board_header>.categori-write {
+        float: right;
+        border-left: 1px solid #AAA;
+        padding-left: 10px;
+    }
+    /* board_header end */
+
+    /* contents-header start */
+    .contents-header{
+        border-bottom: 1px solid #CCC;
+    }
+    .contents-header>.header1, .contents-header>.header2{
+        margin: 10px 0;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+    .contents-header>.header1>.title{
+        float: left;
+        font-size: 24px;
+    }
+    .contents-header>.header1>.time, .contents-header>.header1>a{
+        float: right;
+        margin-top:10px;
+    }
+    .contents-header>.header1 img{
+        width: 18px;
+        margin-right: 5px;
+    }
+    .contents-header>.header2>a{
+        float: left;
+        overflow: hidden;
+        width:30px;
+        height:30px;
+        border-radius: 70%;
+    }
+    .contents-header>.header2 h3{
+        margin:5px 0 0 10px ;
+        float: left;
+    }
+    .contents-header>.header2 img{
+        vertical-align:middle;
+        width:100%;
+        height:100%;
+        object-fit : cover;
+    }
+    .contents-header>.header2>.nick-box{
+        float: left;
+    }
+    .contents-header-info>span{
+        float: right;
+        margin-right: 10px;
+        margin-top: 6px;
+    }
+    .contents-header-info>.commentsCnt{
+        margin: 0;
+        margin-top: 6px;
+    }
+    /* contents-header end */
+    
+    /* comments-text start */
+    .comments-text{
+        margin-bottom: 10px;
+        overflow: hidden;
+        width:90%;
+        float:right;
+    }
+    /* comments-text end */
+    .recommentdiv{
+    overflow:hidden;
+    }
+    /* contents-etc start */
+    .contents-etc{
+        overflow: hidden;
+        text-align:center;
+        margin-bottom: 10px;
+    }
+    .contents-etc>.updown{
+        margin-bottom: 30px;
+    }
+    .contents-etc>.updown>div:hover{
+        cursor: pointer;
+    }
+    .contents-etc>.updown>.up{
+        display: inline-block;
+        width: 100px;
+        border: 3px solid #4a90e2;
+        padding: 10px 17px 5px;
+        margin-right: 20px;
+    }
+    .contents-etc>.updown>.up img, .contents-etc>.updown>.down img{
+        width:30px;
+        margin-right: 10px;
+    }
+    .contents-etc>.updown>.up>strong{
+        color: #4a90e2;
+        vertical-align: 50%;
+    }
+    .contents-etc>.updown>.down{
+        display: inline-block;
+        width: 100px;
+        border: 3px solid #fa314a;
+        padding: 10px 17px 5px;
+    }
+    .contents-etc>.updown>.down>strong{
+        color: #fa314a;
+        vertical-align: 50%;
+    }
+    /* contents-etc end */
+
+    /* contents-crud start */
+    .contents-crud{
+        overflow: hidden;
+        border-bottom: 1px solid #CCC;
+        margin-bottom: 10px;
+    }
+    .contents-crud>a{
+        border-radius: 5px; 
+        padding: 4px 14px;
+        font-size: 12px;
+        margin: 0 10px 10px 0;
+    }
+    .contents-crud>.contents-c{
+        background-color: rgb(166, 212, 255, 0.5);
+        color: rgb(4, 65, 163);
+    }
+    .contents-crud>.contents-u{
+        background-color: rgb(160, 247, 163, 0.5);
+        color: rgb(39, 180, 46);
+    }
+    .contents-crud>.contents-d{
+        background-color: rgb(253, 176, 176, 0.5);
+        color: rgb(253, 60, 60);
+    }
+    .contents-crud>.contents-r{
+        float: right;
+        background: #cfcfcf;
+        margin-right: 0px;
+    }
+    /* contents-crud end */
+
+    /* comments-text start */
+    .contents-text{
+        text-align: center; 
+        padding: 30px 0 50px 0;
+    }
+    .contents-text>img{
+        max-width: 100%;
+    }
+    .icons-wrap>img:hover{
+    	cursor: pointer;
+    }
+    .icons-wrap>img{
+        width:25px; 
+        height:25px; 
+        float: right;
+        margin: 0 10px 10px 0;
+    }
+    /* comments-text end */
+
+    /* comments-best start */
+    .id{
+        overflow: hidden;
+        margin-top: 5px;
+        border-bottom: 1px solid #AAA;
+        font-size: 12px;
+    }
+
+    /* 베스트 댓글 */
+    .comments-best{
+        border:5px solid rgb(243, 123, 123);
+        height: 110px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    .comments-best>.commemts-best-title{
+        background:#ffdddd;
+        color:red;
+        padding: 9px 0;
+    }
+    .comments-best>.commemts-best-title>span{
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    
+    /* 댓글 공통 */
+    .comments-profile{
+        float: left; 
+        margin-right:3px; 
+        margin-bottom: 10px;
+        width: 60px; 
+        height: 60px;
+        overflow:hidden;
+        border-radius: 70%;
+    }
+    .comments-profile>img{
+        margin-right:3px; 
+        width: 100%; 
+        height: 100%;
+        object-fit : cover;
+    }
+    .comments-info{
+        margin: 5px 0 10px 0;
+    }
+    .comments-info img{
+        vertical-align: middle;
+        width:25px; 
+        height:25px; 
+        float: right;
+        margin-right: 10px;
+    }
+    .comments-info .rank{
+        float: left;
+        vertical-align: middle;
+        margin-right: 3px;
+        width: 18px;
+        height: 18px;
+    }
+
+    /* recomments start */
+    .editRecomments{
+        overflow: hidden;
+        float:right;
+        width:90%;
+        background-color: rgb(198, 224, 248);
+        border: 5px solid rgb(125, 106, 235);
+        border-radius: 8px;
+        padding: 8px 15px;
+        margin-bottom: 8px;
+    }
+
+    .remove-comments{
+        float: right;
+    }
+    .editRecomments .recomments-text{
+        margin-top: 13px;
+    }
+    .editRecomments .recomments-text .write-comments{
+        border-radius: 5px;
+        border: 1px solid #CCC; 
+        resize: none; 
+        float: left;
+        width: 85%;  
+        padding: 4px;
+    }
+    .editRecomments .recomments-text>input{
+        float: right; 
+        width: 60px; 
+        height: 50px; 
+        color: rgb(198, 224, 248); 
+        background-color: rgb(166, 212, 255); 
+        border-radius: 5px; 
+        color: rgb(4, 65, 163);
+    }
+    /* recomments end */
+
+    /* re-reconmments start */
+    .recomments{
+        overflow: hidden;
+        padding-top:10px;
+        margin-left:-20px;
+        margin-bottom:5px;
+    }
+    .recomments>img{
+        float: left;
+        margin-left: 4%;
+    }
+    .recomments-profile{
+    	float: left;
+    	overflow: hidden;
+    	width: 60px;
+    	height: 60px;
+    	border-radius: 70%;
+    }
+    .recomments-profile>img{
+        float: left; 
+        width: 100%; 
+        height: 100%;
+        object-fit: cover;
+    }
+    /* re-reconmments end */
+    
+    /* comments-write start */
+    .comments-write{
+        border: 5px solid rgb(125, 106, 235); 
+        border-radius: 8px;
+        box-shadow:0 1px 3px -1px rgb(0 0 0 / 10%);
+        overflow: hidden; 
+        padding: 8px 15px; 
+        margin-bottom: 15px; 
+        background-color: rgb(198, 224, 248);
+    }
+    .comments-write>label{
+        padding-left:5px;
+    }
+    .comments-write>div{
+        margin-top: 13px;
+    }
+    .comments-write>div .write-comments{
+        border-radius: 5px;
+        border: 1px solid #CCC;
+        resize: none; 
+        float: left; 
+        width: 90%;  
+        padding: 5px;
+    }
+    .comments-write>div input[type=button]{
+        float: right; 
+        width: 60px; 
+        height: 50px;  
+        background-color: rgb(166, 212, 255); 
+        border-radius: 5px; 
+        color: rgb(4, 65, 163);
+    }
+    /* comments-best end */
+    
+    /* comments-paging start */
+    .comments-paging{
+        text-align: center; 
+        margin-bottom: 20px;
+    }
+    /* comments-paging end */
+
+    .display-none{
+        display: none;
+    }
+    .remove-comments:hover, .add-recomments:hover{
+        cursor: pointer;
+    }
+
+    .nick-box {
+        overflow-y: auto;
+        position: absolute;
+        margin-left: 60px;
+        z-index: 1;
+        padding: 10px 0;
+        border: 1px solid rgba(0,0,0,.06);
+        border-radius: 6px;
+        background-color: #fff;
+        color: #000;
+    }
+    .nick-box li{
+        padding: 5px 0;
+        font-size: 14px;
+    }
+    .nick-box li:hover{
+        cursor: pointer;
+        background-color: #EEE;
+    }
+    .imgSelect{
+        cursor: pointer;
+    }
+    
+    /* btn-like */
+    .btn-like, .btn-dislike {
+        float: right;
+        width: 70px;
+        height: 25px;
+        margin-right: 10px;
+        color: transparent;
+        text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+    }
+    .btn-like:hover, .btn-dislike:hover {
+        text-shadow: 0 0 0 #ea0;
+    }
+    .rep:hover{
+    	cursor: pointer;
+    }
+    /* btn-like */
+
+    /* control-bar start */
+    .control-bar{ 
+        position: fixed; 
+        bottom: 18%; right: 32%;
+        border: 1px solid #AAA; 
+        border-radius: 5px;
+        text-align: center;  
+        padding: 5px;
+    }
+    .control-bar>a:hover{
+        cursor: pointer;
+        text-decoration: none;
+    }
+    /* control-bar end */

@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+
+
+.main_div {
+	border: 1px solid #aaa;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.div {
+	border: 1px solid #aaa;
+	border-radius: 20px;
+	width: 600px;
+	height: 825px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#div_for_label1 {
+	
+	
+	
+	position: absolute;
+    left: 200px;
+    top: 200px;
+    
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+#div_for_label2 {
+	
+	
+	float: right;
+	
+	position: absolute;
+    left: 880px;
+    top: 200px;
+    
+    font-size:1.5em;
+    font-weight:bold;
+}
+
+#div1 {
+	float: left;
+	border: none;
+	overflow: scroll;
+}
+
+#div2 {
+	float: right;
+	border: none;
+	overflow: scroll;
+}
+
+.secondary_div1 {
+	background-color: white;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	max-width: 500px;
+	max-height: 140px;
+	min-width: 500px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: 25px 50px;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	overflow: hidden;
+	box-shadow: 5px 5px 5px 3px grey;
+}
+
+.secondary_div2 {
+	background-color: white;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	min-width: 500px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: 25px 50px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	box-shadow: 5px 5px 5px 3px gray;
+}
+
+.button {
+	width: 100px;
+	height: 50px;
+	font-size: 0.5em;
+	font-weight: bold;
+	margin-top: 20px;
+	background-color: rgb(52, 168, 83);
+	color: white;
+	border-radius: 5px;
+	border: 2px solid rgb(52, 168, 83);
+	cursor: pointer;
+}
+
+.button2 {
+	width: 100px;
+	height: 50px;
+	font-size: 0.7em;
+	font-weight: bold;
+	margin-top: 20px;
+	background-color: rgb(52, 168, 83);
+	color: white;
+	border-radius: 5px;
+	border: 2px solid rgb(52, 168, 83);
+	cursor: pointer;
+}
+
+#btn_exit_popUp1 {
+	display: none;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	background-color: white;
+	text-align: center;
+	padding: 30px;
+	width: 400px;
+	height: 120px;
+	position: absolute;
+	top: 450px;
+	left: 400px;
+	z-index: 1;
+}
+
+#btn_exit_popUp2 {
+	display: none;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	background-color: white;
+	text-align: center;
+	padding: 30px;
+	width: 400px;
+	height: 120px;
+	position: absolute;
+	top: 450px;
+	left: 900px;
+	z-index: 1;
+}
+
+.btn_shape {
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px;
+	width: 100px;
+	height: 50px;
+	font-size: 1.5em;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+#btn_exit {
+	background-color: rgb(234, 067, 053);
+	color: white;
+}

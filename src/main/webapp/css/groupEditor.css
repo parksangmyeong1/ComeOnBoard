@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+/* * {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+#wrap {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+
+header {
+    position: relative;
+    z-index: 20;
+    min-width: 980px;
+    width: 100%;
+    height: 140px;
+    background-color: rgb(66, 133, 244);
+    text-align: center;
+}
+
+.MultiBar {
+    display: inline-block;
+    height: 30px;
+    width: 100%;
+    max-width: 1280px;
+    padding: 12px 0px 5px;
+}
+
+.area_gnb {
+    font-size: 12px;
+    width: 500px;
+    height: 30px;
+    float: right;
+    color: white;
+}
+
+.area_gnb>li {
+    float: right;
+    width: 75px;
+}
+
+.container {
+    display: inline-block;
+    height: 93px;
+    width: 100%;
+    max-width: 1280px;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    width: 180px;
+    margin-left: -90px;
+}
+
+
+.main_naviwrap {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1280px;
+    height: 80px;
+    margin-top: -98px;
+    padding-bottom: 10px;
+}
+
+.main_nav {
+    padding-top: 45px;
+}
+
+.main_nav>.left_ul {
+    float: left;
+    overflow: hidden;
+}
+
+.main_nav>.right_ul {
+    float: right;
+    overflow: hidden;
+}
+
+.main_nav>ul>li {
+    color: white;
+    width: 85px;
+    float: left;
+} */
+.main_div {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.div {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color: white;
+}
+
+#div1 {
+	width: 800px;
+	height: 500px;
+	float: left;
+	word-break: break-all;
+	padding: 10px;
+}
+
+#div2 {
+	width: 400px;
+	height: 500px;
+	float: right;
+	word-break: break-all;
+	padding: 10px;
+}
+
+#div3 {
+	clear: both;
+	width: 1280px;
+	height: 300px;
+	overflow: scroll;
+}
+
+#exampleFormControlTextarea1 {
+	height: 170px;
+}
+
+#confirm {
+	float: right;
+}
+
+#participant_list {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 360px;
+	height: 50px;
+	margin: 10px 10px auto;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#accept {
+	float: right;
+	margin-right: 10px;
+}
+
+#decline {
+	float: right;
+	margin-right: 10px;
+}
+
+#previous_or_next {
+	text-align: center;
+}
+
+#number {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#count_participant {
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#participant_list_accepted {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 360px;
+	height: 50px;
+	margin-left: 50px;
+	margin-top: 15px;
+	float: left;
+	padding-top: 10px;
+	padding-left: 10px;
+}
