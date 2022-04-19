@@ -26,6 +26,9 @@
 
 ![image](https://user-images.githubusercontent.com/84554105/163956689-3673a574-7c91-4ec9-b12e-490c41b2970a.png)
 
+[프로젝트 설명서](https://github.com/comeonboard/cob/blob/main/PPT/D%EC%A1%B0_ComeOnBoard_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
+
+
 ---
 
 ✔ 담당 기능
@@ -46,4 +49,3 @@
   * kakao map을 통한 원하는 카페 찾기 기능
   * naver API를 통한 블로그 웹 크롤링
 
-[발표 자료 link - low Chart, 그 외 기능](https://github.com/comeonboard/cob/blob/main/PPT/D%EC%A1%B0_ComeOnBoard_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
