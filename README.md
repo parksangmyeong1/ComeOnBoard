@@ -6,7 +6,7 @@
  - Tool : github, sts
 ---
 
-## 프로젝트 소개
+✔## 프로젝트 소개
 
 ### Come On, Board
 
