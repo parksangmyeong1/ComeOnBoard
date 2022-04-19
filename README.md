@@ -1,8 +1,8 @@
 # Come on, Board
 ✔ 사용 기술  
- - Back-end : Spring framework, java, myBatis, AWS(e2, rds), MySQL, tomcat
- - Front-end : html, css, javascript, jquery, ajax, json, summernote
- - API : 카카오 로그인, 카카오 링크, 네이버 블로그, 네이버 블로그 공유하기, 카카오 맵, 카카오페이
+ - Back-end : Spring framework, java, MyBatis, AWS(EC2, rds), MySQL, Tomcat
+ - Front-end : html5, css3, Javascript, Jquery, Ajax, json, Bootstrap
+ - API : 카카오 로그인, 카카오 링크, 네이버 블로그, 네이버 블로그 공유, 카카오 맵, 카카오페이, Summernote
  - Tool : github, sts
 ---
 
@@ -30,30 +30,5 @@ Come On, Board는 보드게임을 하기 위한 모임을 찾는 웹서비스입
 [발표 자료 link](https://github.com/comeonboard/cob/blob/main/PPT/D%EC%A1%B0_ComeOnBoard_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
 
 ---
-
-✔ 패키지 분류
-* 회원 & 친구 : 성종원
-  - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/member)
-  - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/member)
-* 게시판 : 박상명
-  - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/post)
-  - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/post)  
-* 보드게임 : 이재훈
-  - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/game)
-  - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/game)
-* 보드게임카페 : 이현우
-  - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/cafe)
-  - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/cafe)
-* 모임 : 이윤성
-  - [front-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/webapp/WEB-INF/views/group)
-  - [back-end](https://github.com/comeonboard/cob/tree/main/ComeOnBoard/src/main/java/com/bitcamp/cob/group)
-
----
-
-✔ 프로젝트 참가자
-
-* [성종원](https://github.com/jongchi)
-* [이현우](https://github.com/rainty02)
-* [이재훈](https://github.com/kohemf1)
-* [박상명](https://github.com/parksangmyeong1)
-* [이윤성](https://github.com/L-YS-123)
+✔ 아키텍쳐
+![image](https://user-images.githubusercontent.com/84554105/163956689-3673a574-7c91-4ec9-b12e-490c41b2970a.png)
