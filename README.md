@@ -22,8 +22,10 @@
  - Tool : github, sts
 
 ---
+✔ 아키텍쳐
+![image](https://user-images.githubusercontent.com/84554105/163956689-3673a574-7c91-4ec9-b12e-490c41b2970a.png)
 
-
+---
 
 ✔ 프로젝트 설명
 1. 프로젝트 소개
@@ -36,6 +38,3 @@
 
 [발표 자료 link](https://github.com/comeonboard/cob/blob/main/PPT/D%EC%A1%B0_ComeOnBoard_%EC%B5%9C%EC%A2%85%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
 
----
-✔ 아키텍쳐
-![image](https://user-images.githubusercontent.com/84554105/163956689-3673a574-7c91-4ec9-b12e-490c41b2970a.png)
