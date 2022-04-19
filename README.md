@@ -10,11 +10,7 @@
 
 ### Come On, Board
 
-Come On, Board는 보드게임을 하기 위한 모임을 찾는 웹서비스입니다.
-
-모임 외에도, 보드게임과 관련된 커뮤니티 게시판, 보드게임 정보,
-
-보드게임을 하기 위한 보드게임카페 정보를 모두 확인할 수 있는 웹페이지입니다.
+![image](https://user-images.githubusercontent.com/84554105/163956876-89ece3f6-ae3d-4f23-a618-488aef4999f2.png)
 
 ---
 
